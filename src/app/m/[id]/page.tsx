@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { loadAllDocs, relPathFromDocId } from "@/lib/memory";
 
 function formatDate(ms: number): string {
@@ -49,7 +50,7 @@ export default async function MemoryDocPage({
           ← Back
         </Link>
 
-        <header className="mt-6">
+        <header className="mt-6 flex flex-row justify-between items-start">
           <h1 className="text-2xl font-semibold tracking-tight">{doc.title}</h1>
           <div className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
             {doc.relPath} • updated {formatDate(doc.updatedAtMs)}
