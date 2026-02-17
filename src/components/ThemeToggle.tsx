@@ -8,8 +8,13 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    const isDark = localStorage.getItem("theme") === "dark" ||
-      (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    let isDark = false;
+    try {
+      isDark = localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    } catch {
+      isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
     setDark(isDark);
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -19,7 +24,9 @@ export function ThemeToggle() {
   const toggle = () => {
     const newDark = !dark;
     setDark(newDark);
-    localStorage.setItem("theme", newDark ? "dark" : "light");
+    try {
+      localStorage.setItem("theme", newDark ? "dark" : "light");
+    } catch {}
     if (newDark) {
       document.documentElement.classList.add("dark");
     } else {
