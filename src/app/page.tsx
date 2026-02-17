@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { loadAllDocs, searchDocs } from "@/lib/memory";
 
 export default async function Home({
@@ -25,9 +26,10 @@ export default async function Home({
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-black dark:text-zinc-50">
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <header className="mb-6 flex flex-col gap-2">
+        <header className="mb-6 flex flex-row justify-between items-center gap-4">
           <h1 className="text-2xl font-semibold tracking-tight">Second Brain</h1>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          <ThemeToggle />
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 flex-1">
             Zero-friction capture in chat. Fast retrieval here.
           </p>
         </header>
